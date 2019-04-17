@@ -1,16 +1,22 @@
 #!/bin/bash
-# this script take an input of the name in quotes and the outputs the letters i$
-# example input
-# name = "L E N N I C E"
-# the output should then give the inputed name lined up horizontally with the letter and the respective morse code , and then the next letter, and so on
-# However, instead of putting a defined name, this script will use an argument of $1 in order to generalize the code to be used with any name 
+# this script take an input of any name, and then give an output of the name in morse code on the same command line
+#example of command:
+# $ sh morse_code_script_LC2.sh morse.txt L E N N I C E
+# exmaple of the output:
+# L	.-..   E	.   N	-.   N	-.   I	..   C	-.-.   E	.  
+# in order to make sure that this code works for ALL names i used an array ("@") sp that the code would work for any series of letters
+# the for loop will the n take the morse code from the specified file and adhere it to the letter it correlates to 
+# you must use 'grep -w" instead of just 'grep' in order to make it case sensitive due to the fact that the file has other letters
+# $1 = the file that contains the morse code (i.e. morse.txt) 
 
 name=$@
 
 for i in $name
 
-do code=$( grep -w $i $1 )
+do 
 
-echo "$code"
+code=$( grep -w ${i} $1 ) 
 
-done   
+printf "$code"
+
+done
